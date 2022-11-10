@@ -1,25 +1,19 @@
 package org.itacademy.homework.service.command.user_command;
 
-import org.itacademy.homework.data.ListOfFriends;
-import org.itacademy.homework.model.User;
+import org.itacademy.homework.dao.FriendsDao;
 import org.itacademy.homework.service.command.Command;
+import org.itacademy.homework.service.command.ShowUsersFromDao;
 
 public class ShowUserFriends implements Command {
+
+    private final FriendsDao friendsDao = new FriendsDao();
+
     @Override
-    public String execute() {
-        return showUserFriends();
+    public void execute() {
+        showUserFriends();
     }
 
-    private String showUserFriends() {
-        int index = 0;
-        StringBuilder stringBuilder = new StringBuilder();
-        for (User user : ListOfFriends.getListOfFriends()) {
-            stringBuilder.append(user.toString());
-            if (index + 1 < ListOfFriends.getListOfFriends().size()) {
-                stringBuilder.append("\n");
-            }
-            index++;
-        }
-        return stringBuilder.toString();
+    private void showUserFriends() {
+        new ShowUsersFromDao().showUserFromDao(friendsDao);
     }
 }

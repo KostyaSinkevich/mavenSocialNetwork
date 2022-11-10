@@ -7,11 +7,17 @@
   <groupId>org.itacademy.homework</groupId>
   <artifactId>mavenSocialNetwork</artifactId>
   <version>1.0.0</version>
-  <packaging>war</packaging>
 
-  <name>mavenSocialNetwork Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <modules>
+    <module>application</module>
+    <module>data</module>
+    <module>database</module>
+    <module>model</module>
+    <module>service</module>
+    <module>package</module>
+  </modules>
+
+  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,9 +35,28 @@
   </dependencies>
 
   <build>
-    <finalName>mavenSocialNetwork</finalName>
+    <finalName>social-network</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.3.0</version>
+          <configuration>
+            <outputDirectory>
+              ${project.build.directory}/bin
+            </outputDirectory>
+          </configuration>
+          <executions>
+            <execution>
+              <id>copy</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>

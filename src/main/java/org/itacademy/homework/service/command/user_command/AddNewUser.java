@@ -1,48 +1,43 @@
 package org.itacademy.homework.service.command.user_command;
 
-import org.itacademy.homework.exception.InvalidTypeEnteredException;
-import org.itacademy.homework.model.User;
+import org.itacademy.homework.dao.ProfileDao;
+import org.itacademy.homework.dao.UserDao;
+import org.itacademy.homework.dao.WallDao;
 import org.itacademy.homework.service.command.Command;
-
-import java.util.Scanner;
 
 public class AddNewUser implements Command {
 
-    Scanner entered;
+    private final ProfileDao profileDao = new ProfileDao();
+    private final UserDao userDao = new UserDao();
+    private final WallDao wallDao = new WallDao();
 
-    @Override
-    public String execute() {
-        return addNewUser();
+    private final String name;
+    private final String email;
+    private final int age;
+    private final String phoneNumber;
+
+
+    public AddNewUser(String name, String email, int age, String phoneNumber) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
     }
 
-    private String addNewUser() {
-        String name;
-        String email;
-        String phoneNumber;
-        int age;
+    @Override
+    public void execute() {
+        addNewUser(name, email, age, phoneNumber);
+    }
 
-        entered = new Scanner(System.in);
-        System.out.println("Enter your name:");
-        name = entered.nextLine();
-
-        System.out.println("Enter your email:");
-        email = entered.nextLine();
-
-        System.out.println("Enter your phone number:");
-        phoneNumber = entered.nextLine();
-
-        System.out.println("Enter your age:");
-        try {
-            if (entered.hasNextInt()) {
-                age = entered.nextInt();
-            } else {
-                throw new InvalidTypeEnteredException();
-            }
-        } catch (InvalidTypeEnteredException e) {
-            System.out.println(e.getMessage());
-            return addNewUser();
+    private void addNewUser(String name, String email, int age, String phoneNumber) {
+        int id;
+        if (userDao.getAll().isEmpty()) {
+            id = 0;
+        } else {
+            id = userDao.getAll().size();
         }
-        new User(name, email, age, phoneNumber);
-        return "New user has been successfully added";
+        userDao.addNewUser(id, name, age);
+        profileDao.createNewProfile(id, name, email, age, phoneNumber);
+        wallDao.createNewWall(profileDao.get(id));
     }
 }

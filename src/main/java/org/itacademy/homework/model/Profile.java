@@ -1,23 +1,14 @@
 package org.itacademy.homework.model;
 
-import org.itacademy.homework.data.ProfileList;
-
 public class Profile extends User {
 
     private String email;
     private String phoneNumber;
-    private final Wall wall;
 
-    public Profile(String name, String email, int age, String phoneNumber) {
-        super(name, age);
+    public Profile(int id, String name, String email, int age, String phoneNumber) {
+        super(id, name, age);
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.wall = new Wall(this);
-        ProfileList.getProfileList().add(this);
-    }
-
-    public Wall getWall() {
-        return wall;
     }
 
     public String getEmail() {

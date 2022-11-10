@@ -1,22 +1,20 @@
 package org.itacademy.homework.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Wall {
 
     private final Profile profile;
-    private final List<Message> posts = new ArrayList<>();
+    private final int id;
 
     public Wall(Profile profile) {
         this.profile = profile;
+        id = profile.getId();
     }
 
     public Profile getProfile() {
         return profile;
     }
 
-    public List<Message> getPosts() {
-        return posts;
+    public int getId() {
+        return id;
     }
 }

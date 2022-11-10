@@ -1,12 +1,12 @@
 package org.itacademy.homework.service.command.profile_command;
 
-import org.itacademy.homework.data.ProfileList;
-import org.itacademy.homework.data.UserList;
-import org.itacademy.homework.exception.IncorrectUserIdInputException;
-import org.itacademy.homework.exception.InvalidTypeEnteredException;
 import org.itacademy.homework.model.Profile;
+import org.itacademy.homework.data.ProfileList;
 import org.itacademy.homework.model.User;
+import org.itacademy.homework.data.UserList;
 import org.itacademy.homework.service.command.Command;
+import org.itacademy.homework.service.exception.IncorrectUserIdInputException;
+import org.itacademy.homework.service.exception.InvalidTypeEnteredException;
 import org.itacademy.homework.service.command.CommandHandler;
 
 import java.util.Scanner;

@@ -14,7 +14,7 @@ public class App {
 
         do {
             command = usersRequest.nextLine();
-            System.out.println(commandHandler.executeCommand(command));
+            commandHandler.executeCommand(command);
         } while (!command.equalsIgnoreCase("exit"));
 
     }
