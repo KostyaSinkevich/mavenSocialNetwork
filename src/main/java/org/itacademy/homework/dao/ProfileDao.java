@@ -7,26 +7,24 @@ import java.util.List;
 
 public class ProfileDao implements Dao<Profile> {
 
-    List<Profile> list = DataBase.getProfileList();
-
     @Override
     public Profile get(int id) {
-        return list.get(id);
+        return DataBase.getProfileList().get(id);
     }
 
     @Override
     public List<Profile> getAll() {
-        return list;
+        return DataBase.getProfileList();
     }
 
     @Override
     public void save(Profile profile) {
-        list.add(profile);
+        DataBase.getProfileList().add(profile);
     }
 
     @Override
     public void delete(Profile profile) {
-        list.remove(profile);
+        DataBase.getProfileList().remove(profile);
     }
 
     public int createNewProfile(int id, String name, String email, int age, String phoneNumber) {
@@ -36,18 +34,18 @@ public class ProfileDao implements Dao<Profile> {
     }
 
     public void changeName(int id, String name) {
-        list.get(id).setName(name);
+        DataBase.getProfileList().get(id).setName(name);
     }
 
     public void changeEmail(int id, String email) {
-        list.get(id).setEmail(email);
+        DataBase.getProfileList().get(id).setEmail(email);
     }
 
     public void changeAge (int id, int age) {
-        list.get(id).setAge(age);
+        DataBase.getProfileList().get(id).setAge(age);
     }
 
     public void changePhoneNumber(int id, String phoneNumber) {
-        list.get(id).setPhoneNumber(phoneNumber);
+        DataBase.getProfileList().get(id).setPhoneNumber(phoneNumber);
     }
 }

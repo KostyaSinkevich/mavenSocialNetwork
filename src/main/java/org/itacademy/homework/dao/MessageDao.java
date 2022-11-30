@@ -8,26 +8,24 @@ import java.util.List;
 
 public class MessageDao implements Dao<Message> {
 
-    List<Message> list = DataBase.getPosts();
-
     @Override
     public Message get(int id) {
-        return list.get(id);
+        return DataBase.getPosts().get(id);
     }
 
     @Override
     public List<Message> getAll() {
-        return list;
+        return DataBase.getPosts();
     }
 
     @Override
     public void save(Message message) {
-        list.add(message);
+        DataBase.getPosts().add(message);
     }
 
     @Override
     public void delete(Message message) {
-        list.remove(message);
+        DataBase.getPosts().remove(message);
     }
 
     public void addNewMessage(String text, Wall wall) {

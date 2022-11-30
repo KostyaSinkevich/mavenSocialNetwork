@@ -8,26 +8,24 @@ import java.util.List;
 
 public class WallDao implements Dao<Wall> {
 
-    List<Wall> list = DataBase.getWallList();
-
     @Override
     public Wall get(int id) {
-        return list.get(id);
+        return DataBase.getWallList().get(id);
     }
 
     @Override
     public List<Wall> getAll() {
-        return list;
+        return DataBase.getWallList();
     }
 
     @Override
     public void save(Wall wall) {
-        list.add(wall);
+        DataBase.getWallList().add(wall);
     }
 
     @Override
     public void delete(Wall wall) {
-        list.remove(wall);
+        DataBase.getWallList().remove(wall);
     }
 
     public void createNewWall(Profile profile) {

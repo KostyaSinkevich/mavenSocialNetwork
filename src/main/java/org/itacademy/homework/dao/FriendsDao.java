@@ -7,25 +7,23 @@ import java.util.List;
 
 public class FriendsDao implements Dao<User> {
 
-    List<User> list = DataBase.getListOfFriends();
-
     @Override
     public User get(int id) {
-        return list.get(id);
+        return DataBase.getListOfFriends().get(id);
     }
 
     @Override
     public List<User> getAll() {
-        return list;
+        return DataBase.getListOfFriends();
     }
 
     @Override
     public void save(User user) {
-        list.add(user);
+        DataBase.getListOfFriends().add(user);
     }
 
     @Override
     public void delete(User user) {
-        list.remove(user);
+        DataBase.getListOfFriends().remove(user);
     }
 }

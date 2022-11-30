@@ -13,19 +13,27 @@ public class CommandHandler {
     private String enteredByUser;
     private int id;
 
+    Command showUsers;
+    Command showUserFriends;
+
+    public CommandHandler() {
+        showUsers = new ShowUsers();
+        showUserFriends = new ShowUserFriends();
+    }
+
     public void executeCommand(String command) {
         switch (command.toLowerCase()) {
             case "add new user":
                 addNewUser();
                 break;
             case "show all users":
-                newCommand(new ShowUsers());
+                newCommand(showUsers);
                 break;
             case "add user to friends":
                 addUserToFriends();
                 break;
             case "show user friends":
-                newCommand(new ShowUserFriends());
+                newCommand(showUserFriends);
                 break;
             case "show user profile":
                 showUserProfile();
@@ -45,12 +53,12 @@ public class CommandHandler {
     }
 
     private void showUserPosts() {
-        selectUser("Enter the id of the user who will create the post:");
+        selectUser("Enter the id of the user whose posts you want to see:");
         newCommand(new ShowUserPosts(id));
     }
 
     private void createUserPost() {
-        selectUser("Enter the id of the user whose posts you want to see:");
+        selectUser("Enter the id of the user who will create the post:");
         System.out.println("Enter your message:");
         enteredByUser = scanner.nextLine();
         newCommand(new CreateNewPost(id, enteredByUser));
